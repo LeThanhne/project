@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Deploy ML model
+        </title>
+    </head>
+    
+    <body>
+        <h1 style="text-align:center; color:blue;">Image Classifier</h1>
+
+        <form action="/" method="post" enctype="multipart/form-data">
+            <input style="border-style: solid; border-width: 100%; " type="file" accept="image/*" name="imagefile" onchange="loadFile(event)"><br>
+            <img id="output" width="400"/><br>
+            <img id="dis" src="{{url_for('static',filename =imgname)}}" width ="400"/><br>
+            <input type="submit"  value = "Predict image" onchange="loadFile(event)"><br>
+        </form>
+
+        <script>
+            var loadFile = function(event)
+            {
+                var image1 = document.getElementById('dis').style.display='none';
+                var image = document.getElementById('output');
+                image.src=URL.createObjectURL(event.target.files[0]);
+                var predict = document.getElementById('pred').style.display='none'
+            };
+        </script>
+        
+        <br><h2 id="pred">{{prediction}}</h2></br>
+    </body>
+</html>

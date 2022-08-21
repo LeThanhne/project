@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Deploy ML model
+        </title>
+    </head>
+    
+    <body>
+
+        <h1 style="text-align:center; color:blue">Image Classifier</h1>
+        <p>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <h3><li id="mes" style="color:red;font-weight: bold;">{{ message }}</li></h3>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </p>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <input style="border-style: solid; border-width: 100%; " type="file" accept="image/*" name="imagefile" onchange="loadFile(event)"><br>
+            <img id="output" width ="400"/><br>
+            <input type="submit"  value = "Predict image" >
+        </form>
+
+        <script>
+            var loadFile = function(event)
+            {
+                var image = document.getElementById('output');
+                image.src=URL.createObjectURL(event.target.files[0]);
+                var mes = document.getElementById('mes').style.display='none';
+            };
+
+        </script>
+
+    </body>
+</html>
